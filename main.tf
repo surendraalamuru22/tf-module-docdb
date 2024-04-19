@@ -1,4 +1,5 @@
 resource "aws_docdb_subnet_group" "default" {
+  for_each = var.docdb
   name       = "${var.env}-${each.key}roboshop-docdb"
   subnet_ids = var.subnets
 
