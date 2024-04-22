@@ -1,5 +1,4 @@
 resource "aws_docdb_subnet_group" "default" {
-  for_each = var.docdb
   name       = "${var.env}-${var.name}roboshop-docdb"
   subnet_ids = var.subnets
 
@@ -10,7 +9,6 @@ resource "aws_docdb_subnet_group" "default" {
 
 resource "aws_docdb_cluster" "docdb" {
   depends_on              = [aws_docdb_subnet_group.default]
-  for_each                = var.docdb
   cluster_identifier      = "${var.env}-roboshop-docdb"
   engine                  = var.engine
   master_username         = "admin1"
